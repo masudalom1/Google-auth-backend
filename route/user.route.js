@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
     }
 
     // sign JWT (better: only id + email)
+    user=user.toObject({getters:true})
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.SECRET,
@@ -33,8 +34,10 @@ router.post("/", async (req, res) => {
     // set cookie
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production", 
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000, 
+      path:"/"
     });
 
     // send response

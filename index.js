@@ -10,7 +10,8 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin:"https://google-auth-frontend-smoky.vercel.app",
+  origin:["http://localhost:5173","https://google-auth-frontend-smoky.vercel.app"],
+   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, 
 }));
 app.use(express.json()); 
@@ -24,4 +25,6 @@ app.get("/",(req,res)=>{
 app.use("/api/auth",userAuth)
 connectDb()
 
-export default app;
+
+
+export default app
