@@ -10,7 +10,7 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin:"*", 
+  origin:"https://google-auth-frontend-smoky.vercel.app",
   credentials: true, 
 }));
 app.use(express.json()); 
