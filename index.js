@@ -25,6 +25,4 @@ app.get("/",(req,res)=>{
 app.use("/api/auth",userAuth)
 connectDb()
 
-
-
 export default app
